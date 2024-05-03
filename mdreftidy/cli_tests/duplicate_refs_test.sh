@@ -27,4 +27,3 @@ fi
 
 
 echo -e "${GREEN}duplicate_refs_test.sh PASSED${NC}"
-

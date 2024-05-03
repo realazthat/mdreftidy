@@ -10,4 +10,3 @@ python -m mdreftidy.cli \
 python -m mdreftidy.cli --check \
   "mdreftidy/examples/EXAMPLE.all-opts.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
-

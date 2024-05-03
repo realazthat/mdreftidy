@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+# SPDX-License-Identifier: MIT
+#
+# The mdreftidy project requires contributions made to this file be licensed under
+# the MIT license or a compatible open source license. See LICENSE.md for the
+# license text.
+
 import textwrap
 from collections import defaultdict
 from functools import partial
@@ -28,8 +35,8 @@ class _Visitor(Protocol):
 
 def _GetLineNumber(token: Token,
                    ancestors: Optional[List[Token]]) -> Optional[int]:
-  if hasattr(token, "line_number"):
-    line_number = getattr(token, "line_number")
+  if hasattr(token, 'line_number'):
+    line_number = getattr(token, 'line_number')
     if line_number is not None:
       if not isinstance(line_number, int):
         raise AssertionError(
@@ -388,7 +395,7 @@ class RemoveEmptyRefBlocks:
     _RemoveToken(parent=ancestors[-1], token=token)
     self._is_changed = True
     self._console.print(
-        f'Empty reference block removed',
+        'Empty reference block removed',
         style='blue',
     )
     return True
@@ -432,7 +439,7 @@ class MoveToBottom:
       _RemoveToken(parent=parent, token=token)
       self._is_changed = True
       self._console.print(
-          f'Empty reference block moved to the bottom (in other words, deleted)',
+          'Empty reference block moved to the bottom (in other words, deleted)',
           style='blue')
       return True
 

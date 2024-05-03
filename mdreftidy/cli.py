@@ -1,5 +1,11 @@
+# -*- coding: utf-8 -*-
+# SPDX-License-Identifier: MIT
+#
+# The mdreftidy project requires contributions made to this file be licensed under
+# the MIT license or a compatible open source license. See LICENSE.md for the
+# license text.
 """
-Reorder refence links in markdown files.
+CLI to tidy ({renumber,move-to-bottom,sort,clean}) up {image,link} references for markdown.
 """
 import argparse
 import sys
@@ -94,6 +100,7 @@ def main():
     p.add_argument('-i',
                    '--inplace',
                    action='store_true',
+                   default=False,
                    help='Update the file in place. Default: False.')
     p.add_argument(
         '-o',
@@ -104,20 +111,25 @@ def main():
         help='Output markdown file, use "-" for stdout. Default: stdout.')
     p.add_argument('--renumber',
                    action='store_true',
+                   default=False,
                    help='Renumber reference definitions.')
     p.add_argument('--remove-unused',
                    action='store_true',
+                   default=False,
                    help='Remove unused reference definitions.')
     p.add_argument('--move-to-bottom',
                    action='store_true',
+                   default=False,
                    help='Move reference definitions to the bottom of the file.')
     p.add_argument('--sort-ref-blocks',
                    action='store_true',
+                   default=False,
                    help='Sort all blocks of references.')
     p.add_argument(
         '-c',
         '--check',
         action='store_true',
+        default=False,
         help='Return non-zero if there are any changes. Nothing is output.')
     p.add_argument('--version',
                    action='version',
@@ -192,7 +204,7 @@ def main():
       except Exception:
         console.print_exception()
         print('current doc:', file=sys.stderr)
-        print(textwrap.indent(renderer.render(doc), "  |", lambda line: True),
+        print(textwrap.indent(renderer.render(doc), '  |', lambda line: True),
               file=sys.stderr)
         raise
 
