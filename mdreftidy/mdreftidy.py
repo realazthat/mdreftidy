@@ -8,7 +8,7 @@
 import textwrap
 from collections import defaultdict
 from functools import partial
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import yaml
 from mistletoe.block_token import Document
@@ -23,8 +23,8 @@ from typing_extensions import Any, Literal, Protocol
 class _Visitor(Protocol):
 
   def __call__(self, *, ancestors: List[Token], token: Token,
-               children: Optional[List[Token]], order: Literal['pre',
-                                                               'post']) -> bool:
+               children: Optional[Tuple[Token, ...]],
+               order: Literal['pre', 'post']) -> bool:
     """
     When order=='pre', returning True means should descend into children, False means to skip children.
 
@@ -60,13 +60,13 @@ def _DumpTokenInfo(token: Token, ancestors: Optional[List[Token]]) -> str:
   })
 
 
-def _GetChildren(token: Token) -> Optional[List[Token]]:
+def _GetChildren(token: Token) -> Optional[Tuple[Token, ...]]:
   if not hasattr(token, 'children'):
     return None
   children_any: Any = token.children  # type: ignore
-  if not isinstance(children_any, list):
+  if not isinstance(children_any, (tuple, list)):
     raise ValueError(
-        f'Expected children to be a list, but got {type(children_any)}'
+        f'Expected children to be a tuple or list, but got {type(children_any)}'
         f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
     )
   for child in children_any:
@@ -76,14 +76,33 @@ def _GetChildren(token: Token) -> Optional[List[Token]]:
           f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
       )
 
-  children: List[Token] = children_any
-  return children
+  return tuple(children_any)
+
+
+def _GetChildrenInplaceList(token: Token) -> Optional[List[Token]]:
+  if not hasattr(token, 'children'):
+    return None
+  children_any: Any = token.children  # type: ignore
+  if not isinstance(children_any, (tuple, list)):
+    raise ValueError(
+        f'Expected children to be a tuple or list, but got {type(children_any)}'
+        f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
+    )
+  for child in children_any:
+    if not isinstance(child, Token):
+      raise ValueError(
+          f'Expected child to be a Token, but got {type(child)}'
+          f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
+      )
+  if not isinstance(children_any, (list)):
+    return None
+  return children_any
 
 
 def _Traverse(*, token: Token, ancestors: List[Token], visitor: _Visitor):
   """Update the text contents of paragraphs and headings within this block,
     and recursively within its children."""
-  children: Optional[List[Token]] = _GetChildren(token)
+  children: Optional[Tuple[Token, ...]] = _GetChildren(token)
 
   should_descend: bool = visitor(ancestors=ancestors,
                                  token=token,
@@ -103,7 +122,7 @@ def _RemoveToken(parent: Optional[Token], token: Token):
         f'\n parent: None'
         f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
     )
-  children: Optional[List[Token]] = _GetChildren(parent)
+  children: Optional[List[Token]] = _GetChildrenInplaceList(parent)
   if children is None:
     raise ValueError(
         f'Expected parent to have children, but got no children'
@@ -154,7 +173,7 @@ class ErrorChecker:
     return False
 
   def _ScanVisitor(self, *, ancestors: List[Token], token: Token,
-                   children: Optional[List[Token]],
+                   children: Optional[Tuple[Token, ...]],
                    order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -213,7 +232,7 @@ class Renumberer:
     return self._is_changed
 
   def _ScanVisitor(self, *, ancestors: List[Token], token: Token,
-                   children: Optional[List[Token]],
+                   children: Optional[Tuple[Token, ...]],
                    order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -254,7 +273,7 @@ class Renumberer:
     return True
 
   def _UpdateVisitor(self, *, ancestors: List[Token], token: Token,
-                     children: Optional[List[Token]],
+                     children: Optional[Tuple[Token, ...]],
                      order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -313,7 +332,7 @@ class RemoveUnused:
     return self._is_changed
 
   def _ScanVisitor(self, *, ancestors: List[Token], token: Token,
-                   children: Optional[List[Token]],
+                   children: Optional[Tuple[Token, ...]],
                    order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -335,7 +354,7 @@ class RemoveUnused:
     return len(self._label2link[label]) == 0
 
   def _RemoveUnusedVisitor(self, *, ancestors: List[Token], token: Token,
-                           children: Optional[List[Token]],
+                           children: Optional[Tuple[Token, ...]],
                            order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -381,8 +400,8 @@ class RemoveEmptyRefBlocks:
     return self._is_changed
 
   def _RemoveEmptyRefBlocksVisitor(self, *, ancestors: List[Token],
-                                   token: Token,
-                                   children: Optional[List[Token]],
+                                   token: Token, children: Optional[Tuple[Token,
+                                                                          ...]],
                                    order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -417,7 +436,7 @@ class MoveToBottom:
 
   def _MoveToBottomVisitor(self, *, ref_block: LinkReferenceDefinitionBlock,
                            ancestors: List[Token], token: Token,
-                           children: Optional[List[Token]],
+                           children: Optional[Tuple[Token, ...]],
                            order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -494,7 +513,7 @@ class BlockSorter:
     return token.label
 
   def _SortBlockVisitor(self, *, ancestors: List[Token], token: Token,
-                        children: Optional[List[Token]],
+                        children: Optional[Tuple[Token, ...]],
                         order: Literal['pre', 'post']) -> bool:
     if order == 'pre':
       return True
@@ -505,12 +524,15 @@ class BlockSorter:
     if not children:
       return True
 
-    old_children = list(children)
-    children.sort(key=lambda child: self._GetRefLabel(
-        child, ancestors=ancestors + [token]))
-    if old_children == children:
+    old_children: List[LinkReferenceDefinition] = list(token.children)
+    new_children: List[LinkReferenceDefinition] = sorted(
+        old_children,
+        key=lambda child: self._GetRefLabel(child,
+                                            ancestors=ancestors + [token]))
+    if old_children == new_children:
       return True
 
+    token.children = new_children
     ref_block_name = _GetRefBlockName(token)
     self._is_changed = True
     self._console.print(
