@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Reorder ref-links in a markdown file."
 authors = [{name = "AYF", email = "realazthat@gmail.com"}]
 license = {file = "LICENSE.md"}
-readme = ".github/README.md"
+readme = "README.md"
 requires-python = ">=3.8"
 classifiers = [
   "Operating System :: OS Independent",
@@ -22,10 +22,11 @@ dependencies = [
   "colorama >=0.4,<1",
   'importlib-metadata; python_version < "3.8"',
   "mistletoe >=1,<2",
+  "pyyaml >=6,<7",
   "rich >=13,<14",
   "rich-argparse >=1,<2",
   "types-colorama >=0.4,<1",
-  "pyyaml >=6,<7"
+  "typing-extensions >=4,<5"
 ]
 keywords = [
   "github",
