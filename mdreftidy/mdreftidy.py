@@ -8,7 +8,7 @@
 import textwrap
 from collections import defaultdict
 from functools import partial
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Union
 
 import yaml
 from mistletoe.block_token import Document
@@ -500,7 +500,8 @@ class BlockSorter:
   def IsChanged(self) -> bool:
     return self._is_changed
 
-  def _GetRefLabel(self, token: Token, ancestors: List[Token]) -> str:
+  def _GetRefLabel(self, token: Token,
+                   ancestors: List[Token]) -> Union[str, int]:
     if not isinstance(token, LinkReferenceDefinition):
       raise ValueError(
           f'Expected token to be a LinkReferenceDefinition (since it is a child of a LinkReferenceDefinitionBlock), but got {type(token)}'
@@ -510,7 +511,10 @@ class BlockSorter:
       raise ValueError(
           f'Expected label of reference to be a string, but got {type(token.label)}'
       )
-    return token.label
+    try:
+      return int(token.label)
+    except ValueError:
+      return token.label
 
   def _SortBlockVisitor(self, *, ancestors: List[Token], token: Token,
                         children: Optional[Tuple[Token, ...]],
