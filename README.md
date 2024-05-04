@@ -131,7 +131,7 @@ the local images in your README when displayed on their sites.
 pip install mdreftidy
 
 # Install from git (https://github.com/realazthat/mdreftidy)
-pip install git+https://github.com/realazthat/mdreftidy.git@v0.2.0
+pip install git+https://github.com/realazthat/mdreftidy.git@v0.3.0
 ```
 
 ## 🚜 Usage
@@ -336,7 +336,7 @@ These instructions are for maintainers of the project.
   https://img.shields.io/pypi/v/mdreftidy?style=plastic&color=0A1E1E
 [5]: https://pypi.org/project/mdreftidy/
 [6]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.2.0/master?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/master?style=plastic
 [7]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/master?style=plastic
 [8]:
@@ -344,19 +344,19 @@ These instructions are for maintainers of the project.
 [9]:
   https://img.shields.io/github/languages/top/realazthat/mdreftidy.svg?&cacheSeconds=28800&style=plastic&color=0A1E1E
 [10]:
-  https://github.com/realazthat/mdreftidy/compare/v0.2.0...master
+  https://github.com/realazthat/mdreftidy/compare/v0.3.0...master
 [11]:
   https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
 [12]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.2.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/develop?style=plastic
 [13]:
-  https://github.com/realazthat/mdreftidy/compare/v0.2.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.3.0...develop
 [14]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
 [15]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.2.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/develop?style=plastic
 [16]:
-  https://github.com/realazthat/mdreftidy/compare/v0.2.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.3.0...develop
 [17]: https://github.com/realazthat/mdreftidy/tree/master
 [18]: https://github.com/realazthat/mdreftidy/tree/develop
 
