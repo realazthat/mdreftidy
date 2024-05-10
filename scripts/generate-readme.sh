@@ -25,9 +25,9 @@ python -m snipinator.cli \
   -o "${PROJ_PATH}/README.md" \
   --chmod-ro
 
-LAST_VERSION=$(tomlq -r '.["tool"]["snipinator-project-metadata"]["last_stable_release"]' pyproject.toml)
+LAST_VERSION=$(tomlq -r -e '.["tool"]["mdreftidy-project-metadata"]["last_stable_release"]' pyproject.toml)
 python -m mdremotifier.cli \
   -i "${PROJ_PATH}/README.md" \
-  --url-prefix "https://github.com/realazthat/snipinator/blob/v${LAST_VERSION}/" \
-  --img-url-prefix "https://raw.githubusercontent.com/realazthat/snipinator/v${LAST_VERSION}/" \
+  --url-prefix "https://github.com/realazthat/mdreftidy/blob/v${LAST_VERSION}/" \
+  --img-url-prefix "https://raw.githubusercontent.com/realazthat/mdreftidy/v${LAST_VERSION}/" \
   -o "${PROJ_PATH}/.github/README.remotified.md"
