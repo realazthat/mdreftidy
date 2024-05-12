@@ -246,7 +246,7 @@ Not complete, and not necessarily up to date. Make a PR
 
 | Project           | Stars | Last Update  | Language | Platform | Similarity X Obviousness |
 | ----------------- | ----- | ------------ | -------- | -------- | ------------------------ |
-| [dce/mdrenum][60] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
+| [dce/mdrenum][23] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
 
 ## 🫡 Contributions
 
@@ -369,3 +369,6 @@ These instructions are for maintainers of the project.
   https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
 [22]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
+[23]:
+  https://github.com/dce/mdrenum
+  "Very similar, not as featureful (no move-to-bottom)"
