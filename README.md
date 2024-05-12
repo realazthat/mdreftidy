@@ -131,7 +131,7 @@ the local images in your README when displayed on their sites.
 pip install mdreftidy
 
 # Install from git (https://github.com/realazthat/mdreftidy)
-pip install git+https://github.com/realazthat/mdreftidy.git@v0.3.0
+pip install git+https://github.com/realazthat/mdreftidy.git@v0.3.1
 ```
 
 ## 🚜 Usage
@@ -351,21 +351,21 @@ These instructions are for maintainers of the project.
 [12]:
   https://github.com/realazthat/mdreftidy/actions/workflows/build-and-test.yml
 [13]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/master?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/master?style=plastic
 [14]:
-  https://github.com/realazthat/mdreftidy/compare/v0.3.0...master
+  https://github.com/realazthat/mdreftidy/compare/v0.3.1...master
 [15]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/master?style=plastic
 [16]: https://github.com/realazthat/mdreftidy/tree/develop
 [17]:
   https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
 [18]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
 [19]:
-  https://github.com/realazthat/mdreftidy/compare/v0.3.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
 [20]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
 [21]:
-  https://github.com/realazthat/mdreftidy/compare/v0.3.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
 [22]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
