@@ -40,8 +40,14 @@ SOURCE: `README.md.jinja2`.
     <a href="#-command-line-options">💻CLI</a>
     &nbsp;&bull;&nbsp;
     <a href="#-examples">💡Examples</a>
-    &nbsp;&bull;&nbsp;
+  </strong>
+</p>
+
+<p align="center">
+  <strong>
     <a href="#-requirements">✅Requirements</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-docker-image">🐳Docker</a>
   </strong>
 </p>
 
@@ -222,6 +228,58 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 - Ubuntu 20.04, Python `3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0`, tested in GitHub Actions
   workflow ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
 
+## 🐳 Docker Image
+
+Docker images are published to [ghcr.io/realazthat/mdreftidy][48] at each
+tag.
+
+```bash
+# Use the published images at ghcr.io/realazthat/mdreftidy.
+docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.3.1 --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm -it \
+  -v $(pwd):/data \
+  ghcr.io/realazthat/mdreftidy:v0.3.1 \
+  mdreftidy/examples/EXAMPLE.md \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
+  -o -
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+```bash
+# Build the docker image.
+docker build -t my-mdreftidy-image .
+
+# Run the docker image.
+docker run --rm -it my-mdreftidy-image --help
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+<!---->
+```bash
+
+# Build the docker image.
+docker build -t my-mdreftidy-image .
+
+# Print usage.
+docker run --rm --tty my-mdreftidy-image --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-mdreftidy-image \
+  mdreftidy/examples/EXAMPLE.md \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
+  -o -
+
+```
+<!---->
+
 ## 🤏 Versioning
 
 We use SemVer for versioning. For the versions available, see the tags on this
@@ -287,6 +345,7 @@ Not complete, and not necessarily up to date. Make a PR
     - docker.
   - Generate animation:
     - docker
+  - docker (for building the docker image).
 
 ### Commit Process
 
