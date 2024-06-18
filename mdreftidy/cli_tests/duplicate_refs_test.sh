@@ -17,6 +17,7 @@ MARKDOWN=$(cat <<EOF
 
 EOF
 )
+EXIT_CODE=0
 echo "${MARKDOWN}" | python -m mdreftidy.cli - -o "-" || EXIT_CODE=$? && true
 if [[ ${EXIT_CODE} -eq 0 ]]; then
   echo -e "${RED}ERROR: Expected non-zero exit code${NC}"

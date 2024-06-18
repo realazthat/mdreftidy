@@ -40,8 +40,14 @@ SOURCE: `README.md.jinja2`.
     <a href="#-command-line-options">💻CLI</a>
     &nbsp;&bull;&nbsp;
     <a href="#-examples">💡Examples</a>
-    &nbsp;&bull;&nbsp;
+  </strong>
+</p>
+
+<p align="center">
+  <strong>
     <a href="#-requirements">✅Requirements</a>
+    &nbsp;&bull;&nbsp;
+    <a href="#-docker-image">🐳Docker</a>
   </strong>
 </p>
 
@@ -131,7 +137,7 @@ the local images in your README when displayed on their sites.
 pip install mdreftidy
 
 # Install from git (https://github.com/realazthat/mdreftidy)
-pip install git+https://github.com/realazthat/mdreftidy.git@v0.3.1
+pip install git+https://github.com/realazthat/mdreftidy.git@v0.4.0
 ```
 
 ## 🚜 Usage
@@ -222,6 +228,58 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 - Ubuntu 20.04, Python `3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0`, tested in GitHub Actions
   workflow ([build-and-test.yml](./.github/workflows/build-and-test.yml)).
 
+## 🐳 Docker Image
+
+Docker images are published to [ghcr.io/realazthat/mdreftidy][23] at each
+tag.
+
+```bash
+# Use the published images at ghcr.io/realazthat/mdreftidy.
+docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.4.0 --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm -it \
+  -v $(pwd):/data \
+  ghcr.io/realazthat/mdreftidy:v0.4.0 \
+  mdreftidy/examples/EXAMPLE.md \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
+  -o -
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+```bash
+# Build the docker image.
+docker build -t my-mdreftidy-image .
+
+# Run the docker image.
+docker run --rm -it my-mdreftidy-image --help
+```
+
+If you want to build the image yourself, you can use the Dockerfile in the
+repository.
+
+<!---->
+```bash
+
+# Build the docker image.
+docker build -t my-mdreftidy-image .
+
+# Print usage.
+docker run --rm --tty my-mdreftidy-image --help
+
+# /data in the docker image is the working directory, so paths are simpler.
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-mdreftidy-image \
+  mdreftidy/examples/EXAMPLE.md \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
+  -o -
+
+```
+<!---->
+
 ## 🤏 Versioning
 
 We use SemVer for versioning. For the versions available, see the tags on this
@@ -246,7 +304,7 @@ Not complete, and not necessarily up to date. Make a PR
 
 | Project           | Stars | Last Update  | Language | Platform | Similarity X Obviousness |
 | ----------------- | ----- | ------------ | -------- | -------- | ------------------------ |
-| [dce/mdrenum][60] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
+| [dce/mdrenum][24] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
 
 ## 🫡 Contributions
 
@@ -287,6 +345,7 @@ Not complete, and not necessarily up to date. Make a PR
     - docker.
   - Generate animation:
     - docker
+  - docker (for building the docker image).
 
 ### Commit Process
 
@@ -351,21 +410,25 @@ These instructions are for maintainers of the project.
 [12]:
   https://github.com/realazthat/mdreftidy/actions/workflows/build-and-test.yml
 [13]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/master?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/master?style=plastic
 [14]:
-  https://github.com/realazthat/mdreftidy/compare/v0.3.1...master
+  https://github.com/realazthat/mdreftidy/compare/v0.4.0...master
 [15]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/master?style=plastic
 [16]: https://github.com/realazthat/mdreftidy/tree/develop
 [17]:
   https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
 [18]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/develop?style=plastic
 [19]:
-  https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.4.0...develop
 [20]:
   https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
 [21]:
   https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
 [22]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
+[23]: https://ghcr.io/realazthat/mdreftidy
+[24]:
+  https://github.com/dce/mdrenum
+  "Very similar, not as featureful (no move-to-bottom)"
