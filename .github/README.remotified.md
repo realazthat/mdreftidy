@@ -365,8 +365,8 @@ These instructions are for maintainers of the project.
    everything is in order.
 2. In the `develop` branch, bump the version in
    [./pyproject.toml](https://github.com/realazthat/mdreftidy/blob/v0.4.0/pyproject.toml), following semantic versioning
-   principles. Also modify the `last_unstable_release` and `last_stable_release`
-   in the `[tool.mdreftidy-project-metadata]` table as appropriate. Run
+   principles. Also modify the `last_release` and `last_stable_release` in the
+   `[tool.mdreftidy-project-metadata]` table as appropriate. Run
    `bash ./scripts/pre.sh` to ensure everything is in order.
 3. In the `develop` branch, commit these changes with a message like
    `"Prepare release X.Y.Z"`. (See the contributions section
@@ -407,8 +407,8 @@ These instructions are for maintainers of the project.
 [17]: https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
 [18]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/develop?style=plastic
 [19]: https://github.com/realazthat/mdreftidy/compare/v0.4.0...develop
-[20]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
-[21]: https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
+[20]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/develop?style=plastic
+[21]: https://github.com/realazthat/mdreftidy/compare/v0.4.0...develop
 [22]: https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
 [23]: https://ghcr.io/realazthat/mdreftidy
 [24]: https://github.com/dce/mdrenum "Very similar, not as featureful (no move-to-bottom)"
