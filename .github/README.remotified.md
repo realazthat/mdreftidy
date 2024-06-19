@@ -72,13 +72,13 @@ for markdown**
 
 </div>
 
-<img alt="Demo" src="https://raw.githubusercontent.com/realazthat/mdreftidy/v0.4.0/.github/demo.gif" width="100%"/>
+<img alt="Demo" src="https://raw.githubusercontent.com/realazthat/mdreftidy/v0.5.0/.github/demo.gif" width="100%"/>
 
 ## ❔ What
 
 What mdreftidy does:
 
-Turn this ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/EXAMPLE.md)):
+Turn this ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md)):
 
 <!---->
 ```md
@@ -100,7 +100,7 @@ Turn this ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdref
 <!---->
 
 Into this
-([./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md)):
+([./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md)):
 
 <!---->
 ```md
@@ -137,12 +137,12 @@ the local images in your README when displayed on their sites.
 pip install mdreftidy
 
 # Install from git (https://github.com/realazthat/mdreftidy)
-pip install git+https://github.com/realazthat/mdreftidy.git@v0.4.0
+pip install git+https://github.com/realazthat/mdreftidy.git@v0.5.0
 ```
 
 ## 🚜 Usage
 
-Example README: ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/EXAMPLE.md)):
+Example README: ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md)):
 
 <!---->
 ```md
@@ -186,16 +186,16 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 ## 💻 Command Line Options
 
 <!---->
-<img alt="Output of `python -m mdreftidy.cli --help`" src="https://raw.githubusercontent.com/realazthat/mdreftidy/v0.4.0/README.help.generated.svg"/>
+<img alt="Output of `python -m mdreftidy.cli --help`" src="https://raw.githubusercontent.com/realazthat/mdreftidy/v0.5.0/README.help.generated.svg"/>
 <!-- -->
 
 ## 💡 Examples
 
 - Example:
-  - Original: [./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/EXAMPLE.md).
+  - Original: [./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md).
   - Tidied:
-    [./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md).
-  - Generation script: [./mdreftidy/examples/example.sh](https://github.com/realazthat/mdreftidy/blob/v0.4.0/mdreftidy/examples/example.sh).
+    [./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md).
+  - Generation script: [./mdreftidy/examples/example.sh](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/example.sh).
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using mdreftidy:
@@ -226,7 +226,7 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 
 - WSL2 Ubuntu 20.04, Python `3.8.0`.
 - Ubuntu 20.04, Python `3.8.0, 3.9.0, 3.10.0, 3.11.0, 3.12.0`, tested in GitHub Actions
-  workflow ([build-and-test.yml](https://github.com/realazthat/mdreftidy/blob/v0.4.0/.github/workflows/build-and-test.yml)).
+  workflow ([build-and-test.yml](https://github.com/realazthat/mdreftidy/blob/v0.5.0/.github/workflows/build-and-test.yml)).
 
 ## 🐳 Docker Image
 
@@ -235,12 +235,12 @@ tag.
 
 ```bash
 # Use the published images at ghcr.io/realazthat/mdreftidy.
-docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.4.0 --help
+docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.5.0 --help
 
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm -it \
   -v $(pwd):/data \
-  ghcr.io/realazthat/mdreftidy:v0.4.0 \
+  ghcr.io/realazthat/mdreftidy:v0.5.0 \
   mdreftidy/examples/EXAMPLE.md \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
   -o -
@@ -288,7 +288,7 @@ repository.
 ## 🔑 License
 
 This project is licensed under the MIT License - see the
-[./LICENSE.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/LICENSE.md) file for details.
+[./LICENSE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/LICENSE.md) file for details.
 
 ## 🙏 Thanks
 
@@ -312,7 +312,7 @@ Not complete, and not necessarily up to date. Make a PR
 
 - For running `pre.sh` (Linux-like environment).
 
-  - From [./.github/dependencies.yml](https://github.com/realazthat/mdreftidy/blob/v0.4.0/.github/dependencies.yml), which is used for
+  - From [./.github/dependencies.yml](https://github.com/realazthat/mdreftidy/blob/v0.5.0/.github/dependencies.yml), which is used for
     the GH Action to do a fresh install of everything:
 
     ```yaml
@@ -331,13 +331,13 @@ Not complete, and not necessarily up to date. Make a PR
     ```
 
   - Requires `pyenv`, or an exact matching version of python as in
-    [.python-version](https://github.com/realazthat/mdreftidy/blob/v0.4.0/.python-version) (which is currently
+    [.python-version](https://github.com/realazthat/mdreftidy/blob/v0.5.0/.python-version) (which is currently
     `3.8.0 `).
   - `jq`, ([installation](https://jqlang.github.io/jq/)) required for
     [yq](https://github.com/kislyuk/yq), which is itself required for our
-    [./README.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/README.md) generation, which uses `tomlq` (from the
+    [./README.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/README.md) generation, which uses `tomlq` (from the
     [yq](https://github.com/kislyuk/yq) package) to include version strings from
-    [./pyproject.toml](https://github.com/realazthat/mdreftidy/blob/v0.4.0/pyproject.toml).
+    [./pyproject.toml](https://github.com/realazthat/mdreftidy/blob/v0.5.0/pyproject.toml).
   - act (to run the GH Action locally):
     - Requires nodejs.
     - Requires Go.
@@ -352,7 +352,7 @@ Not complete, and not necessarily up to date. Make a PR
 2. Stage your files: `git add path/to/file.py`.
 3. `bash ./scripts/pre.sh`, this will format, lint, and test the code.
 4. `git status` check if anything changed (generated
-   [./README.md](https://github.com/realazthat/mdreftidy/blob/v0.4.0/README.md) for example), if so, `git add` the
+   [./README.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/README.md) for example), if so, `git add` the
    changes, and go back to the previous step.
 5. `git commit -m "..."`.
 6. Make a PR to `develop` (or push to develop if you have the rights).
@@ -364,9 +364,9 @@ These instructions are for maintainers of the project.
 1. In the `develop` branch, run `bash ./scripts/pre.sh` to ensure
    everything is in order.
 2. In the `develop` branch, bump the version in
-   [./pyproject.toml](https://github.com/realazthat/mdreftidy/blob/v0.4.0/pyproject.toml), following semantic versioning
-   principles. Also modify the `last_unstable_release` and `last_stable_release`
-   in the `[tool.mdreftidy-project-metadata]` table as appropriate. Run
+   [./pyproject.toml](https://github.com/realazthat/mdreftidy/blob/v0.5.0/pyproject.toml), following semantic versioning
+   principles. Also modify the `last_release` and `last_stable_release` in the
+   `[tool.mdreftidy-project-metadata]` table as appropriate. Run
    `bash ./scripts/pre.sh` to ensure everything is in order.
 3. In the `develop` branch, commit these changes with a message like
    `"Prepare release X.Y.Z"`. (See the contributions section
@@ -388,27 +388,27 @@ These instructions are for maintainers of the project.
 
 <!-- Logo from https://lucide.dev/icons/laptop-minimal -->
 
-[1]: https://raw.githubusercontent.com/realazthat/mdreftidy/v0.4.0/.github/logo-exported.svg
+[1]: https://raw.githubusercontent.com/realazthat/mdreftidy/v0.5.0/.github/logo-exported.svg
 [2]: https://img.shields.io/badge/Audience-Developers-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXVzZXJzIj48cGF0aCBkPSJNMTYgMjF2LTJhNCA0IDAgMCAwLTQtNEg2YTQgNCAwIDAgMC00IDR2MiIvPjxjaXJjbGUgY3g9IjkiIGN5PSI3IiByPSI0Ii8+PHBhdGggZD0iTTIyIDIxdi0yYTQgNCAwIDAgMC0zLTMuODciLz48cGF0aCBkPSJNMTYgMy4xM2E0IDQgMCAwIDEgMCA3Ljc1Ii8+PC9zdmc+
 [3]: https://img.shields.io/badge/Platform-Linux-0A1E1E?style=plastic&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWxhcHRvcC1taW5pbWFsIj48cmVjdCB3aWR0aD0iMTgiIGhlaWdodD0iMTIiIHg9IjMiIHk9IjQiIHJ4PSIyIiByeT0iMiIvPjxsaW5lIHgxPSIyIiB4Mj0iMjIiIHkxPSIyMCIgeTI9IjIwIi8+PC9zdmc+
 [4]: https://img.shields.io/github/languages/top/realazthat/mdreftidy.svg?&cacheSeconds=28800&style=plastic&color=0A1E1E
 [5]: https://img.shields.io/github/license/realazthat/mdreftidy?style=plastic&color=0A1E1E
-[6]: https://github.com/realazthat/mdreftidy/blob/v0.4.0/LICENSE.md
+[6]: https://github.com/realazthat/mdreftidy/blob/v0.5.0/LICENSE.md
 [7]: https://img.shields.io/pypi/v/mdreftidy?style=plastic&color=0A1E1E
 [8]: https://pypi.org/project/mdreftidy/
 [9]: https://img.shields.io/pypi/pyversions/mdreftidy?style=plastic&color=0A1E1E
 [10]: https://github.com/realazthat/mdreftidy/tree/master
 [11]: https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=master&style=plastic
 [12]: https://github.com/realazthat/mdreftidy/actions/workflows/build-and-test.yml
-[13]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/master?style=plastic
-[14]: https://github.com/realazthat/mdreftidy/compare/v0.4.0...master
+[13]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/master?style=plastic
+[14]: https://github.com/realazthat/mdreftidy/compare/v0.5.0...master
 [15]: https://img.shields.io/github/last-commit/realazthat/mdreftidy/master?style=plastic
 [16]: https://github.com/realazthat/mdreftidy/tree/develop
 [17]: https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
-[18]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.4.0/develop?style=plastic
-[19]: https://github.com/realazthat/mdreftidy/compare/v0.4.0...develop
-[20]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.3.1/develop?style=plastic
-[21]: https://github.com/realazthat/mdreftidy/compare/v0.3.1...develop
+[18]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/develop?style=plastic
+[19]: https://github.com/realazthat/mdreftidy/compare/v0.5.0...develop
+[20]: https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/develop?style=plastic
+[21]: https://github.com/realazthat/mdreftidy/compare/v0.5.0...develop
 [22]: https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
 [23]: https://ghcr.io/realazthat/mdreftidy
 [24]: https://github.com/dce/mdrenum "Very similar, not as featureful (no move-to-bottom)"
