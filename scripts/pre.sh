@@ -30,6 +30,7 @@ fi
 
 EXTRA=dev bash scripts/utilities/pin-extra-reqs.sh
 EXTRA=prod bash scripts/utilities/pin-extra-reqs.sh
+bash scripts/quickrun.sh
 
 # Run this manually, because it doesn't output the same exact file every time.
 # bash scripts/generate-animation.sh
