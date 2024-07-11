@@ -21,6 +21,7 @@ docker run --rm --tty my-mdreftidy-image --help
 
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
+  -u "$(id -u):$(id -g)" \
   -v "${PWD}:/data" \
   my-mdreftidy-image \
   mdreftidy/examples/EXAMPLE.md \

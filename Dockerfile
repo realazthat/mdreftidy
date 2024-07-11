@@ -16,7 +16,7 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install bash && \
   chown -R user:user /mdreftidy /home/user/.local && \
   chmod -R a+wrX /mdreftidy
 
-COPY . /mdreftidy
+COPY --chown=user:user . /mdreftidy
 
 USER user
 WORKDIR /mdreftidy
