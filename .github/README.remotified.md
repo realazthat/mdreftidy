@@ -253,6 +253,7 @@ docker run --rm --tty \
   -o "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
+# Now --check to verify:
 docker run --rm --tty \
   -v "${PWD}:/data" \
   ghcr.io/realazthat/mdreftidy:v0.5.0 \
@@ -285,6 +286,7 @@ docker run --rm --tty \
   -o "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
+# Now --check to verify:
 docker run --rm --tty \
   -v "${PWD}:/data" \
   my-mdreftidy-image \

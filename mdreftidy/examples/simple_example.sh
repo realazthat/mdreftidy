@@ -17,6 +17,7 @@ python -m mdreftidy.cli \
   -o "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
+# Now --check to verify:
 python -m mdreftidy.cli \
   --check \
   "mdreftidy/examples/SIMPLE.tidied.md" \
