@@ -78,7 +78,7 @@ for markdown**
 
 What mdreftidy does:
 
-Turn this ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md)):
+Turn this ([./mdreftidy/examples/SIMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -99,8 +99,7 @@ Turn this ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdref
 ```
 <!---->
 
-Into this
-([./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md)):
+Into this ([./mdreftidy/examples/SIMPLE.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/SIMPLE.tidied.md)):
 
 <!---->
 ```md
@@ -142,7 +141,7 @@ pip install git+https://github.com/realazthat/mdreftidy.git@v0.5.0
 
 ## 🚜 Usage
 
-Example README: ([./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md)):
+Example README: ([./mdreftidy/examples/SIMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -167,7 +166,7 @@ Generating the README:
 
 <!---->
 ```bash
-$ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
+$ python -m mdreftidy.cli ./mdreftidy/examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
 # Example markdown file
 
 ## Reference link: Out of order
@@ -183,6 +182,12 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 ```
 <!---->
 
+All together now:
+
+<!---->
+<img alt="Output of `bash ./snipinator/examples/simple_example.sh`" src="https://raw.githubusercontent.com/realazthat/mdreftidy/v0.5.0/README.simple-output.generated.svg"/>
+<!-- -->
+
 ## 💻 Command Line Options
 
 <!---->
@@ -192,10 +197,10 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 ## 💡 Examples
 
 - Example:
-  - Original: [./mdreftidy/examples/EXAMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.md).
-  - Tidied:
-    [./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/EXAMPLE.all-opts.tidied.md).
-  - Generation script: [./mdreftidy/examples/example.sh](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/example.sh).
+  - Original: [./mdreftidy/examples/SIMPLE.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/SIMPLE.md).
+  - Tidied: [./mdreftidy/examples/SIMPLE.tidied.md](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/SIMPLE.tidied.md).
+  - Generation script:
+    [./mdreftidy/examples/simple_example.sh](https://github.com/realazthat/mdreftidy/blob/v0.5.0/mdreftidy/examples/simple_example.sh).
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using mdreftidy:
@@ -233,29 +238,33 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 Docker images are published to [ghcr.io/realazthat/mdreftidy][23] at each
 tag.
 
+<!---->
 ```bash
+
+# View the template file.
+cat "mdreftidy/examples/SIMPLE.md"
+
 # Use the published images at ghcr.io/realazthat/mdreftidy.
-docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.5.0 --help
-
 # /data in the docker image is the working directory, so paths are simpler.
-docker run --rm -it \
-  -v $(pwd):/data \
+docker run --rm --tty \
+  -v "${PWD}:/data" \
   ghcr.io/realazthat/mdreftidy:v0.5.0 \
-  mdreftidy/examples/EXAMPLE.md \
-  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
-  -o -
+  "mdreftidy/examples/SIMPLE.md" \
+  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  ghcr.io/realazthat/mdreftidy:v0.5.0 \
+  --check \
+  "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# View the remotified file.
+cat "mdreftidy/examples/SIMPLE.tidied.md"
+
 ```
-
-If you want to build the image yourself, you can use the Dockerfile in the
-repository.
-
-```bash
-# Build the docker image.
-docker build -t my-mdreftidy-image .
-
-# Run the docker image.
-docker run --rm -it my-mdreftidy-image --help
-```
+<!---->
 
 If you want to build the image yourself, you can use the Dockerfile in the
 repository.
@@ -263,20 +272,29 @@ repository.
 <!---->
 ```bash
 
-# Build the docker image.
 docker build -t my-mdreftidy-image .
 
-# Print usage.
-docker run --rm --tty my-mdreftidy-image --help
+# View the template file.
+cat "mdreftidy/examples/SIMPLE.md"
 
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
-  -u "$(id -u):$(id -g)" \
   -v "${PWD}:/data" \
   my-mdreftidy-image \
-  mdreftidy/examples/EXAMPLE.md \
-  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
-  -o -
+  "mdreftidy/examples/SIMPLE.md" \
+  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-mdreftidy-image \
+  --check \
+  "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# View the remotified file.
+cat "mdreftidy/examples/SIMPLE.tidied.md"
+
 
 ```
 <!---->

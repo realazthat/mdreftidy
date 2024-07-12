@@ -38,6 +38,8 @@ bash scripts/quickrun.sh
 # Runs in generate.sh.
 # bash scripts/format.sh
 # Runs in generate.sh.
+# bash scripts/generate-examples.sh
+# Runs in generate.sh.
 # bash scripts/run-all-examples.sh
 # Runs in generate.sh.
 # bash scripts/generate-readme.sh
