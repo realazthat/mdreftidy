@@ -118,10 +118,6 @@ Into this ([./mdreftidy/examples/SIMPLE.tidied.md](https://github.com/realazthat
 ```
 <!---->
 
-This is useful for uploading `README.md` files to third-party sites, like the
-npmjs.com registry, or pypi.org registry, because these registries will break
-the local images in your README when displayed on their sites.
-
 ## 🎇 Features
 
 - Renumbers references by order used.
@@ -323,9 +319,10 @@ Main libraries used in mdreftidy are:
 Not complete, and not necessarily up to date. Make a PR
 ([contributions](#-contributions)) to insert/modify.
 
-| Project           | Stars | Last Update  | Language | Platform | Similarity X Obviousness |
-| ----------------- | ----- | ------------ | -------- | -------- | ------------------------ |
-| [dce/mdrenum][24] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐                    |
+| Project             | Stars | Last Update  | Language         | Platform | Similarity X Obviousness |
+| ------------------- | ----- | ------------ | ---------------- | -------- | ------------------------ |
+| [dce/mdrenum][24]   | 2     | `2023/11/16` | JS               | CLI      | ⭐⭐⭐⭐⭐                    |
+| [unified-utils][25] | 4     | JS           | [remark][26]/CLI | ⭐⭐⭐⭐⭐    |                          |
 
 ## 🫡 Contributions
 
@@ -433,3 +430,5 @@ These instructions are for maintainers of the project.
 [22]: https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
 [23]: https://ghcr.io/realazthat/mdreftidy
 [24]: https://github.com/dce/mdrenum "Very similar, not as featureful (no move-to-bottom)"
+[25]: https://github.com/Xunnamius/unified-utils "sort-definitions, renumber-references, remove-unused-definitions"
+[26]: https://github.com/remarkjs/remark
