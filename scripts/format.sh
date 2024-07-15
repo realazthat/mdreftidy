@@ -32,6 +32,6 @@ else
   toml-sort --in-place "${PROJ_PATH}/pyproject.toml"
 fi
 python -m autoflake --remove-all-unused-imports --in-place --recursive ./mdreftidy
-isort ./mdreftidy
+python -m isort ./mdreftidy
 
 # vulture ./mdreftidy
