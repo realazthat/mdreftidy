@@ -63,7 +63,9 @@ def _DumpTokenInfo(token: Token, ancestors: Optional[List[Token]]) -> str:
 def _GetChildren(token: Token) -> Optional[Tuple[Token, ...]]:
   if not hasattr(token, 'children'):
     return None
-  children_any: Any = token.children  # type: ignore
+  children_any: Optional[Any] = token.children  # type: ignore
+  if children_any is None:
+    return None
   if not isinstance(children_any, (tuple, list)):
     raise ValueError(
         f'Expected children to be a tuple or list, but got {type(children_any)}'
@@ -82,7 +84,9 @@ def _GetChildren(token: Token) -> Optional[Tuple[Token, ...]]:
 def _GetChildrenInplaceList(token: Token) -> Optional[List[Token]]:
   if not hasattr(token, 'children'):
     return None
-  children_any: Any = token.children  # type: ignore
+  children_any: Optional[Any] = token.children  # type: ignore
+  if children_any is None:
+    return None
   if not isinstance(children_any, (tuple, list)):
     raise ValueError(
         f'Expected children to be a tuple or list, but got {type(children_any)}'
@@ -149,13 +153,15 @@ def _GetRefBlockName(token: LinkReferenceDefinitionBlock) -> str:
         f'Expected token to be a LinkReferenceDefinitionBlock, but got {type(token)}'
         f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
     )
-  for child in token.children:
-    if not isinstance(child, LinkReferenceDefinition):
-      raise ValueError(
-          f'Expected children to be a list of LinkReferenceDefinition, but got {type(child)}'
-          f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
-      )
-    return child.label
+  children: Optional[Tuple[Token, ...]] = _GetChildren(token)
+  if children is None:
+    for child in children:
+      if not isinstance(child, LinkReferenceDefinition):
+        raise ValueError(
+            f'Expected children to be a list of LinkReferenceDefinition, but got {type(child)}'
+            f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
+        )
+      return child.label
   return 'N/A'
 
 
@@ -528,7 +534,7 @@ class BlockSorter:
     if not children:
       return True
 
-    old_children: List[LinkReferenceDefinition] = list(token.children)
+    old_children: List[LinkReferenceDefinition] = list(token.children or [])
     new_children: List[LinkReferenceDefinition] = sorted(
         old_children,
         key=lambda child: self._GetRefLabel(child,
