@@ -27,7 +27,7 @@ cat "mdreftidy/examples/SIMPLE.md"
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
   -v "${PWD}:/data" \
-  ghcr.io/realazthat/mdreftidy:v0.5.0 \
+  ghcr.io/realazthat/mdreftidy:v0.6.0 \
   "mdreftidy/examples/SIMPLE.md" \
   -o "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
@@ -35,7 +35,7 @@ docker run --rm --tty \
 # Now --check to verify:
 docker run --rm --tty \
   -v "${PWD}:/data" \
-  ghcr.io/realazthat/mdreftidy:v0.5.0 \
+  ghcr.io/realazthat/mdreftidy:v0.6.0 \
   --check \
   "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
