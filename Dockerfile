@@ -6,7 +6,6 @@ WORKDIR /mdreftidy
 # apt-get -y --no-install-recommends install git=1:2.39.2-1.1 &&
 # apt-get -y upgrade &&
 
-COPY . /mdreftidy
 RUN apt-get -y update && apt-get -y --no-install-recommends install bash && \
   apt-get -y clean && \
   apt-get -y autoremove && \
@@ -17,6 +16,7 @@ RUN apt-get -y update && apt-get -y --no-install-recommends install bash && \
   chown -R user:user /mdreftidy /home/user/.local && \
   chmod -R a+wrX /mdreftidy
 
+COPY --chown=user:user . /mdreftidy
 
 USER user
 WORKDIR /mdreftidy

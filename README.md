@@ -78,7 +78,7 @@ for markdown**
 
 What mdreftidy does:
 
-Turn this ([./mdreftidy/examples/EXAMPLE.md](./mdreftidy/examples/EXAMPLE.md)):
+Turn this ([./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -99,8 +99,7 @@ Turn this ([./mdreftidy/examples/EXAMPLE.md](./mdreftidy/examples/EXAMPLE.md)):
 ```
 <!---->
 
-Into this
-([./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](./mdreftidy/examples/EXAMPLE.all-opts.tidied.md)):
+Into this ([./mdreftidy/examples/SIMPLE.tidied.md](./mdreftidy/examples/SIMPLE.tidied.md)):
 
 <!---->
 ```md
@@ -119,10 +118,6 @@ Into this
 ```
 <!---->
 
-This is useful for uploading `README.md` files to third-party sites, like the
-npmjs.com registry, or pypi.org registry, because these registries will break
-the local images in your README when displayed on their sites.
-
 ## 🎇 Features
 
 - Renumbers references by order used.
@@ -137,12 +132,12 @@ the local images in your README when displayed on their sites.
 pip install mdreftidy
 
 # Install from git (https://github.com/realazthat/mdreftidy)
-pip install git+https://github.com/realazthat/mdreftidy.git@v0.5.0
+pip install git+https://github.com/realazthat/mdreftidy.git@v0.6.0
 ```
 
 ## 🚜 Usage
 
-Example README: ([./mdreftidy/examples/EXAMPLE.md](./mdreftidy/examples/EXAMPLE.md)):
+Example README: ([./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -167,7 +162,7 @@ Generating the README:
 
 <!---->
 ```bash
-$ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
+$ python -m mdreftidy.cli ./mdreftidy/examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
 # Example markdown file
 
 ## Reference link: Out of order
@@ -183,6 +178,12 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 ```
 <!---->
 
+All together now:
+
+<!---->
+<img src="README.simple-output.generated.svg" alt="Output of `bash ./snipinator/examples/simple_example.sh`" />
+<!---->
+
 ## 💻 Command Line Options
 
 <!---->
@@ -192,10 +193,10 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 ## 💡 Examples
 
 - Example:
-  - Original: [./mdreftidy/examples/EXAMPLE.md](./mdreftidy/examples/EXAMPLE.md).
-  - Tidied:
-    [./mdreftidy/examples/EXAMPLE.all-opts.tidied.md](./mdreftidy/examples/EXAMPLE.all-opts.tidied.md).
-  - Generation script: [./mdreftidy/examples/example.sh](./mdreftidy/examples/example.sh).
+  - Original: [./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md).
+  - Tidied: [./mdreftidy/examples/SIMPLE.tidied.md](./mdreftidy/examples/SIMPLE.tidied.md).
+  - Generation script:
+    [./mdreftidy/examples/simple_example.sh](./mdreftidy/examples/simple_example.sh).
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using mdreftidy:
@@ -233,29 +234,34 @@ $ python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --rem
 Docker images are published to [ghcr.io/realazthat/mdreftidy][23] at each
 tag.
 
+<!---->
 ```bash
+
+# View the template file.
+cat "mdreftidy/examples/SIMPLE.md"
+
 # Use the published images at ghcr.io/realazthat/mdreftidy.
-docker run --rm -it ghcr.io/realazthat/mdreftidy:v0.5.0 --help
-
 # /data in the docker image is the working directory, so paths are simpler.
-docker run --rm -it \
-  -v $(pwd):/data \
-  ghcr.io/realazthat/mdreftidy:v0.5.0 \
-  mdreftidy/examples/EXAMPLE.md \
-  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
-  -o -
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  ghcr.io/realazthat/mdreftidy:v0.6.0 \
+  "mdreftidy/examples/SIMPLE.md" \
+  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# Now --check to verify:
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  ghcr.io/realazthat/mdreftidy:v0.6.0 \
+  --check \
+  "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# View the remotified file.
+cat "mdreftidy/examples/SIMPLE.tidied.md"
+
 ```
-
-If you want to build the image yourself, you can use the Dockerfile in the
-repository.
-
-```bash
-# Build the docker image.
-docker build -t my-mdreftidy-image .
-
-# Run the docker image.
-docker run --rm -it my-mdreftidy-image --help
-```
+<!---->
 
 If you want to build the image yourself, you can use the Dockerfile in the
 repository.
@@ -263,19 +269,30 @@ repository.
 <!---->
 ```bash
 
-# Build the docker image.
 docker build -t my-mdreftidy-image .
 
-# Print usage.
-docker run --rm --tty my-mdreftidy-image --help
+# View the template file.
+cat "mdreftidy/examples/SIMPLE.md"
 
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
   -v "${PWD}:/data" \
   my-mdreftidy-image \
-  mdreftidy/examples/EXAMPLE.md \
-  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
-  -o -
+  "mdreftidy/examples/SIMPLE.md" \
+  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# Now --check to verify:
+docker run --rm --tty \
+  -v "${PWD}:/data" \
+  my-mdreftidy-image \
+  --check \
+  "mdreftidy/examples/SIMPLE.tidied.md" \
+  --move-to-bottom --remove-unused --sort-ref-blocks --renumber
+
+# View the remotified file.
+cat "mdreftidy/examples/SIMPLE.tidied.md"
+
 
 ```
 <!---->
@@ -302,9 +319,10 @@ Main libraries used in mdreftidy are:
 Not complete, and not necessarily up to date. Make a PR
 ([contributions](#-contributions)) to insert/modify.
 
-| Project           | Stars | Last Update  | Language | Platform | Similarity X Obviousness |
-| ----------------- | ----- | ------------ | -------- | -------- | ------------------------ |
-| [dce/mdrenum][24] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
+| Project             | Stars | Last Update  | Language         | Platform   | Similarity X Obviousness |
+| ------------------- | ----- | ------------ | ---------------- | ---------- | ------------------------ |
+| [dce/mdrenum][24]   | 2     | `2023/11/16` | JS               | CLI        | ⭐⭐⭐⭐⭐               |
+| [unified-utils][25] | 4     | JS           | [remark][26]/CLI | ⭐⭐⭐⭐⭐ |                          |
 
 ## 🫡 Contributions
 
@@ -410,25 +428,29 @@ These instructions are for maintainers of the project.
 [12]:
   https://github.com/realazthat/mdreftidy/actions/workflows/build-and-test.yml
 [13]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/master?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.6.0/master?style=plastic
 [14]:
-  https://github.com/realazthat/mdreftidy/compare/v0.5.0...master
+  https://github.com/realazthat/mdreftidy/compare/v0.6.0...master
 [15]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/master?style=plastic
 [16]: https://github.com/realazthat/mdreftidy/tree/develop
 [17]:
   https://img.shields.io/github/actions/workflow/status/realazthat/mdreftidy/build-and-test.yml?branch=develop&style=plastic
 [18]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.6.0/develop?style=plastic
 [19]:
-  https://github.com/realazthat/mdreftidy/compare/v0.5.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.6.0...develop
 [20]:
-  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.5.0/develop?style=plastic
+  https://img.shields.io/github/commits-since/realazthat/mdreftidy/v0.6.0/develop?style=plastic
 [21]:
-  https://github.com/realazthat/mdreftidy/compare/v0.5.0...develop
+  https://github.com/realazthat/mdreftidy/compare/v0.6.0...develop
 [22]:
   https://img.shields.io/github/last-commit/realazthat/mdreftidy/develop?style=plastic
 [23]: https://ghcr.io/realazthat/mdreftidy
 [24]:
   https://github.com/dce/mdrenum
   "Very similar, not as featureful (no move-to-bottom)"
+[25]:
+  https://github.com/Xunnamius/unified-utils
+  "sort-definitions, renumber-references, remove-unused-definitions"
+[26]: https://github.com/remarkjs/remark

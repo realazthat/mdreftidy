@@ -75,18 +75,13 @@ for markdown**
 
 What {{project_name_proper}} does:
 
-Turn this ({{ path('./mdreftidy/examples/EXAMPLE.md', link='md') }}):
+Turn this ({{ path('./mdreftidy/examples/SIMPLE.md', link='md') }}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/EXAMPLE.md', backtickify='md', decomentify='nl') }}-->
+<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
 
-Into this
-({{ path('./mdreftidy/examples/EXAMPLE.all-opts.tidied.md', link='md') }}):
+Into this ({{ path('./mdreftidy/examples/SIMPLE.tidied.md', link='md') }}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/EXAMPLE.all-opts.tidied.md', backtickify='md', decomentify='nl') }}-->
-
-This is useful for uploading `README.md` files to third-party sites, like the
-npmjs.com registry, or pypi.org registry, because these registries will break
-the local images in your README when displayed on their sites.
+<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.tidied.md', backtickify='md', decomentify='nl') }}-->
 
 ## 🎇 Features
 
@@ -107,13 +102,27 @@ pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stabl
 
 ## 🚜 Usage
 
-Example README: ({{path('./mdreftidy/examples/EXAMPLE.md', link='md')}}):
+Example README: ({{path('./mdreftidy/examples/SIMPLE.md', link='md')}}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/EXAMPLE.md', backtickify='md', decomentify='nl') }}-->
+<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
 
 Generating the README:
 
-<!--{{ shell('python -m mdreftidy.cli ./mdreftidy/examples/EXAMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null', backtickify='bash', decomentify='nl') }}-->
+<!--{{ shell('python -m mdreftidy.cli ./mdreftidy/examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null', backtickify='bash', decomentify='nl') }}-->
+
+All together now:
+
+<!--{{ shell('cat ' ~ simple_example_output_path,
+             start=': ECHO_SNIPPET_START',
+             end='^.*: ECHO_SNIPPET_END',
+             regex='MULTILINE',
+             rich='README.simple-output.generated.svg',
+             rich_alt='Output of `bash ./snipinator/examples/simple_example.sh`',
+             rich_bg_color='black',
+             rich_term='xterm-256color',
+             rich_cols=160,
+             include_args=False,
+             decomentify='nl') }}-->
 
 ## 💻 Command Line Options
 
@@ -128,10 +137,10 @@ Generating the README:
 ## 💡 Examples
 
 - Example:
-  - Original: {{path('./mdreftidy/examples/EXAMPLE.md', link='md')}}.
-  - Tidied:
-    {{path('./mdreftidy/examples/EXAMPLE.all-opts.tidied.md', link='md')}}.
-  - Generation script: {{path('./mdreftidy/examples/example.sh', link='md')}}.
+  - Original: {{path('./mdreftidy/examples/SIMPLE.md', link='md')}}.
+  - Tidied: {{path('./mdreftidy/examples/SIMPLE.tidied.md', link='md')}}.
+  - Generation script:
+    {{path('./mdreftidy/examples/simple_example.sh', link='md')}}.
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using {{project_name_proper}}:
@@ -169,36 +178,18 @@ Generating the README:
 Docker images are published to [ghcr.io/realazthat/{{project_name}}][23] at each
 tag.
 
-```bash
-# Use the published images at ghcr.io/realazthat/{{project_name}}.
-docker run --rm -it ghcr.io/realazthat/{{project_name}}:v{{last_stable_release}} --help
-
-# /data in the docker image is the working directory, so paths are simpler.
-docker run --rm -it \
-  -v $(pwd):/data \
-  ghcr.io/realazthat/{{project_name}}:v{{last_stable_release}} \
-  mdreftidy/examples/EXAMPLE.md \
-  --move-to-bottom --remove-unused --sort-ref-blocks --renumber \
-  -o -
-```
+<!--{{snippet('./mdreftidy/examples/remote-docker_example-noautorun.sh',
+              start='# SNIPPET_START',
+              end='\n# SNIPPET_END',
+              backtickify='bash',
+              decomentify='nl')|trim}}-->
 
 If you want to build the image yourself, you can use the Dockerfile in the
 repository.
 
-```bash
-# Build the docker image.
-docker build -t my-{{project_name}}-image .
-
-# Run the docker image.
-docker run --rm -it my-{{project_name}}-image --help
-```
-
-If you want to build the image yourself, you can use the Dockerfile in the
-repository.
-
-<!--{{snippet('./mdreftidy/examples/local-docker-example.sh',
-              start='# DOCKER_START',
-              end='# DOCKER_END',
+<!--{{snippet('./mdreftidy/examples/local-docker_example.sh',
+              start='# SNIPPET_START',
+              end='# SNIPPET_END',
               backtickify='bash',
               decomentify='nl')|trim}}-->
 
@@ -224,9 +215,10 @@ Main libraries used in {{project_name}} are:
 Not complete, and not necessarily up to date. Make a PR
 ([contributions](#-contributions)) to insert/modify.
 
-| Project           | Stars | Last Update  | Language | Platform | Similarity X Obviousness |
-| ----------------- | ----- | ------------ | -------- | -------- | ------------------------ |
-| [dce/mdrenum][24] | 2     | `2023/11/16` | JS       | CLI      | ⭐⭐⭐⭐⭐               |
+| Project             | Stars | Last Update  | Language         | Platform   | Similarity X Obviousness |
+| ------------------- | ----- | ------------ | ---------------- | ---------- | ------------------------ |
+| [dce/mdrenum][24]   | 2     | `2023/11/16` | JS               | CLI        | ⭐⭐⭐⭐⭐               |
+| [unified-utils][25] | 4     | JS           | [remark][26]/CLI | ⭐⭐⭐⭐⭐ |                          |
 
 ## 🫡 Contributions
 
@@ -344,3 +336,7 @@ These instructions are for maintainers of the project.
 [24]:
   https://github.com/dce/mdrenum
   "Very similar, not as featureful (no move-to-bottom)"
+[25]:
+  https://github.com/Xunnamius/unified-utils
+  "sort-definitions, renumber-references, remove-unused-definitions"
+[26]: https://github.com/remarkjs/remark
