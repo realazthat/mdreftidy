@@ -154,7 +154,7 @@ def _GetRefBlockName(token: LinkReferenceDefinitionBlock) -> str:
         f'\n token:\n{textwrap.indent(_DumpTokenInfo(token, ancestors=None), "  ")}'
     )
   children: Optional[Tuple[Token, ...]] = _GetChildren(token)
-  if children is None:
+  if children is not None:
     for child in children:
       if not isinstance(child, LinkReferenceDefinition):
         raise ValueError(
