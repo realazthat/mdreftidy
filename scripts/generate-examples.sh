@@ -42,7 +42,7 @@ python -m snipinator.cli \
   --rm \
   --force \
   --create \
-  -o "${PROJ_PATH}/mdreftidy/examples/local-docker_example.sh" \
+  -o "${PROJ_PATH}/mdreftidy/examples/simple_local-docker_example.sh" \
   --chmod-ro
 
 
@@ -54,5 +54,5 @@ python -m snipinator.cli \
   --rm \
   --force \
   --create \
-  -o "${PROJ_PATH}/mdreftidy/examples/remote-docker_example-noautorun.sh" \
+  -o "${PROJ_PATH}/mdreftidy/examples/simple_remote-docker_example-noautorun.sh" \
   --chmod-ro
