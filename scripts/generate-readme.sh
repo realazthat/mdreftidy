@@ -41,7 +41,7 @@ echo "${TMP_DIR}/simple_example.output" \
   > "${TMP_DIR}/snipinator-args.json"
 
 python -m snipinator.cli \
-  -t "${PROJ_PATH}/README.md.jinja2" \
+  -t "${PROJ_PATH}/.github/README.md.jinja2" \
   --args "$(cat "${TMP_DIR}/snipinator-args.json")" \
   --rm \
   --force \
