@@ -41,13 +41,14 @@ echo "${TMP_DIR}/simple_example.output" \
   > "${TMP_DIR}/snipinator-args.json"
 
 python -m snipinator.cli \
-  -t "${PROJ_PATH}/README.md.jinja2" \
+  -t "${PROJ_PATH}/.github/README.md.jinja2" \
   --args "$(cat "${TMP_DIR}/snipinator-args.json")" \
   --rm \
   --force \
   --create \
   -o "${PROJ_PATH}/README.md" \
-  --chmod-ro
+  --chmod-ro \
+  --skip-unchanged
 
 LAST_VERSION=$(tomlq -r -e '.["tool"]["mdreftidy-project-metadata"]["last_stable_release"]' pyproject.toml)
 python -m mdremotifier.cli \

@@ -5,11 +5,11 @@
 # https://gist.github.com/mohanpedala/1e2ff5661761d3abd0385e8223e16425
 set -e -x -v -u -o pipefail
 set +v
-PS4="${GREEN}$ ${NC}"
-
-
+GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
+PS4="${GREEN}$ ${NC}"
+
 
 # Don't run this in act/GH actions because act doesn't play with with nested
 # docker; the paths mess up.
@@ -27,7 +27,7 @@ cat "mdreftidy/examples/SIMPLE.md"
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
   -v "${PWD}:/data" \
-  ghcr.io/realazthat/mdreftidy:v0.6.0 \
+  ghcr.io/realazthat/mdreftidy:v0.6.1 \
   "mdreftidy/examples/SIMPLE.md" \
   -o "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
@@ -35,7 +35,7 @@ docker run --rm --tty \
 # Now --check to verify:
 docker run --rm --tty \
   -v "${PWD}:/data" \
-  ghcr.io/realazthat/mdreftidy:v0.6.0 \
+  ghcr.io/realazthat/mdreftidy:v0.6.1 \
   --check \
   "mdreftidy/examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber

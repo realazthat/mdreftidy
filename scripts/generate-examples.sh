@@ -32,7 +32,8 @@ python -m snipinator.cli \
   --force \
   --create \
   -o "${PROJ_PATH}/mdreftidy/examples/simple_example.sh" \
-  --chmod-ro
+  --chmod-ro \
+  --skip-unchanged
 
 
 python -m snipinator.cli \
@@ -42,8 +43,9 @@ python -m snipinator.cli \
   --rm \
   --force \
   --create \
-  -o "${PROJ_PATH}/mdreftidy/examples/local-docker_example.sh" \
-  --chmod-ro
+  -o "${PROJ_PATH}/mdreftidy/examples/simple_local-docker_example.sh" \
+  --chmod-ro \
+  --skip-unchanged
 
 
 LAST_VERSION=$(tomlq -r -e '.["tool"]["mdreftidy-project-metadata"]["last_stable_release"]' pyproject.toml)
@@ -54,5 +56,6 @@ python -m snipinator.cli \
   --rm \
   --force \
   --create \
-  -o "${PROJ_PATH}/mdreftidy/examples/remote-docker_example-noautorun.sh" \
-  --chmod-ro
+  -o "${PROJ_PATH}/mdreftidy/examples/simple_remote-docker_example-noautorun.sh" \
+  --chmod-ro \
+  --skip-unchanged
