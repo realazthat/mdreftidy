@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mdreftidy"
-version = "0.6.0"
+version = "0.6.1"
 description = "CLI to tidy ({renumber,move-to-bottom,sort,clean}) up {image,link} references for markdown."
 authors = [{name = "AYF", email = "realazthat@gmail.com"}]
 license = {file = "LICENSE.md"}
@@ -144,8 +144,8 @@ Documentation = "https://github.com/realazthat/mdreftidy"
 Repository = "https://github.com/realazthat/mdreftidy"
 
 [tool.mdreftidy-project-metadata]
-last_stable_release = "0.6.0"
-last_release = "0.6.0"
+last_stable_release = "0.6.1"
+last_release = "0.6.1"
 
 [tool.setuptools]
 packages = ["mdreftidy"]
