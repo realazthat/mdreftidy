@@ -59,7 +59,7 @@ python -m mdreftidy.cli --version
 echo -e "${GREEN}Success: mdreftidy smoke test ran successfully${NC}"
 
 mkdir -p .github
-cd ./mdreftidy/examples/
+cd ./examples/
 export PS1="${VHS_PS1}"
 vhs "${PROJ_PATH}/.github/demo.tape"
 cp -f .github/demo.gif "${PROJ_PATH}/.github/demo.gif"

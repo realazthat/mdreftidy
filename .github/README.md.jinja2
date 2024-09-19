@@ -75,13 +75,13 @@ for markdown**
 
 What {{project_name_proper}} does:
 
-Turn this ({{ path('./mdreftidy/examples/SIMPLE.md', link='md') }}):
+Turn this ({{ path('./examples/SIMPLE.md', link='md') }}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
+<!--{{ rawsnippet('./examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
 
-Into this ({{ path('./mdreftidy/examples/SIMPLE.tidied.md', link='md') }}):
+Into this ({{ path('./examples/SIMPLE.tidied.md', link='md') }}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.tidied.md', backtickify='md', decomentify='nl') }}-->
+<!--{{ rawsnippet('./examples/SIMPLE.tidied.md', backtickify='md', decomentify='nl') }}-->
 
 ## 🎇 Features
 
@@ -102,13 +102,13 @@ pip install git+https://github.com/realazthat/{{project_name}}.git@v{{last_stabl
 
 ## 🚜 Usage
 
-Example README: ({{path('./mdreftidy/examples/SIMPLE.md', link='md')}}):
+Example README: ({{path('./examples/SIMPLE.md', link='md')}}):
 
-<!--{{ rawsnippet('./mdreftidy/examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
+<!--{{ rawsnippet('./examples/SIMPLE.md', backtickify='md', decomentify='nl') }}-->
 
 Generating the README:
 
-<!--{{ shell('python -m mdreftidy.cli ./mdreftidy/examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null', backtickify='bash', decomentify='nl') }}-->
+<!--{{ shell('python -m mdreftidy.cli ./examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null', backtickify='bash', decomentify='nl') }}-->
 
 All together now:
 
@@ -137,10 +137,9 @@ All together now:
 ## 💡 Examples
 
 - Example:
-  - Original: {{path('./mdreftidy/examples/SIMPLE.md', link='md')}}.
-  - Tidied: {{path('./mdreftidy/examples/SIMPLE.tidied.md', link='md')}}.
-  - Generation script:
-    {{path('./mdreftidy/examples/simple_example.sh', link='md')}}.
+  - Original: {{path('./examples/SIMPLE.md', link='md')}}.
+  - Tidied: {{path('./examples/SIMPLE.tidied.md', link='md')}}.
+  - Generation script: {{path('./examples/simple_example.sh', link='md')}}.
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using {{project_name_proper}}:
@@ -178,7 +177,7 @@ All together now:
 Docker images are published to [ghcr.io/realazthat/{{project_name}}][23] at each
 tag.
 
-<!--{{snippet('./mdreftidy/examples/simple_remote-docker_example-noautorun.sh',
+<!--{{snippet('./examples/simple_remote-docker_example-noautorun.sh',
               start='# SNIPPET_START',
               end='\n# SNIPPET_END',
               backtickify='bash',
@@ -187,7 +186,7 @@ tag.
 If you want to build the image yourself, you can use the Dockerfile in the
 repository.
 
-<!--{{snippet('./mdreftidy/examples/simple_local-docker_example.sh',
+<!--{{snippet('./examples/simple_local-docker_example.sh',
               start='# SNIPPET_START',
               end='# SNIPPET_END',
               backtickify='bash',

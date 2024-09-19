@@ -29,7 +29,7 @@ trap cleanup EXIT
 
 # Try to make terminal output as consistent as possible.
 TERM=xterm-256color COLUMNS=160 LINES=40 \
-PS4="${GREEN}$ ${NC}" unbuffer bash -x "${PROJ_PATH}/mdreftidy/examples/simple_example.sh" \
+PS4="${GREEN}$ ${NC}" unbuffer bash -x "${PROJ_PATH}/examples/simple_example.sh" \
   > "${TMP_DIR}/simple_example.output" 2>&1
 
 # We need to pass in simple_example_output_path as an argument to the Jinja2

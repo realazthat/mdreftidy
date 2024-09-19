@@ -78,7 +78,7 @@ for markdown**
 
 What mdreftidy does:
 
-Turn this ([./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md)):
+Turn this ([./examples/SIMPLE.md](./examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -99,7 +99,7 @@ Turn this ([./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md)):
 ```
 <!---->
 
-Into this ([./mdreftidy/examples/SIMPLE.tidied.md](./mdreftidy/examples/SIMPLE.tidied.md)):
+Into this ([./examples/SIMPLE.tidied.md](./examples/SIMPLE.tidied.md)):
 
 <!---->
 ```md
@@ -137,7 +137,7 @@ pip install git+https://github.com/realazthat/mdreftidy.git@v0.6.1
 
 ## 🚜 Usage
 
-Example README: ([./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md)):
+Example README: ([./examples/SIMPLE.md](./examples/SIMPLE.md)):
 
 <!---->
 ```md
@@ -162,7 +162,7 @@ Generating the README:
 
 <!---->
 ```bash
-$ python -m mdreftidy.cli ./mdreftidy/examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
+$ python -m mdreftidy.cli ./examples/SIMPLE.md --move-to-bottom --remove-unused --sort-ref-blocks --renumber -o - 2>/dev/null
 # Example markdown file
 
 ## Reference link: Out of order
@@ -193,10 +193,9 @@ All together now:
 ## 💡 Examples
 
 - Example:
-  - Original: [./mdreftidy/examples/SIMPLE.md](./mdreftidy/examples/SIMPLE.md).
-  - Tidied: [./mdreftidy/examples/SIMPLE.tidied.md](./mdreftidy/examples/SIMPLE.tidied.md).
-  - Generation script:
-    [./mdreftidy/examples/simple_example.sh](./mdreftidy/examples/simple_example.sh).
+  - Original: [./examples/SIMPLE.md](./examples/SIMPLE.md).
+  - Tidied: [./examples/SIMPLE.tidied.md](./examples/SIMPLE.tidied.md).
+  - Generation script: [./examples/simple_example.sh](./examples/simple_example.sh).
 
 <!-- TODO: Rebuild this for mdreftidy
 - Projects using mdreftidy:
@@ -238,15 +237,15 @@ tag.
 ```bash
 
 # View the template file.
-cat "mdreftidy/examples/SIMPLE.md"
+cat "examples/SIMPLE.md"
 
 # Use the published images at ghcr.io/realazthat/mdreftidy.
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
   -v "${PWD}:/data" \
   ghcr.io/realazthat/mdreftidy:v0.6.1 \
-  "mdreftidy/examples/SIMPLE.md" \
-  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  "examples/SIMPLE.md" \
+  -o "examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
 # Now --check to verify:
@@ -254,11 +253,11 @@ docker run --rm --tty \
   -v "${PWD}:/data" \
   ghcr.io/realazthat/mdreftidy:v0.6.1 \
   --check \
-  "mdreftidy/examples/SIMPLE.tidied.md" \
+  "examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
 # View the remotified file.
-cat "mdreftidy/examples/SIMPLE.tidied.md"
+cat "examples/SIMPLE.tidied.md"
 
 ```
 <!---->
@@ -272,14 +271,14 @@ repository.
 docker build -t my-mdreftidy-image .
 
 # View the template file.
-cat "mdreftidy/examples/SIMPLE.md"
+cat "examples/SIMPLE.md"
 
 # /data in the docker image is the working directory, so paths are simpler.
 docker run --rm --tty \
   -v "${PWD}:/data" \
   my-mdreftidy-image \
-  "mdreftidy/examples/SIMPLE.md" \
-  -o "mdreftidy/examples/SIMPLE.tidied.md" \
+  "examples/SIMPLE.md" \
+  -o "examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
 # Now --check to verify:
@@ -287,11 +286,11 @@ docker run --rm --tty \
   -v "${PWD}:/data" \
   my-mdreftidy-image \
   --check \
-  "mdreftidy/examples/SIMPLE.tidied.md" \
+  "examples/SIMPLE.tidied.md" \
   --move-to-bottom --remove-unused --sort-ref-blocks --renumber
 
 # View the remotified file.
-cat "mdreftidy/examples/SIMPLE.tidied.md"
+cat "examples/SIMPLE.tidied.md"
 
 
 ```

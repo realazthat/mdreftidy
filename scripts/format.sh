@@ -12,7 +12,7 @@ TOML=${PROJ_PATH}/pyproject.toml EXTRA=dev \
   bash "${PROJ_PATH}/scripts/utilities/ensure-reqs.sh"
 
 # find all *.md.jinja2 paths in mdreftidy
-find ./mdreftidy/examples -type f -name "*.md" ! -path '*.tidied.md' -print0 | while IFS= read -r -d '' MARKDOWN_TEMPLATE; do
+find ./examples/ -type f -name "*.md" ! -path '*.tidied.md' -print0 | while IFS= read -r -d '' MARKDOWN_TEMPLATE; do
   MARKDOWN_TEMPLATE=$(realpath "${MARKDOWN_TEMPLATE}")
   # Don't use mdreftidy on the examples because they are meant to be examples
   # of untidied markdown files.
